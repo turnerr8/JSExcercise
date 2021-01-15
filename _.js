@@ -1,4 +1,10 @@
 
+const _ = {
+    //clamp
+    clamp(number, lowBounds, highBounds) {
+        return Math.max(lowBounds, Math.min(number, highBounds));
+    }
+};
 
 
 
