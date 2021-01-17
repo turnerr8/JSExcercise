@@ -77,6 +77,49 @@ const _ = {
             invertedObj[originalValue] =x;
         }
         return invertedObj;
+    },
+
+    findKey(object, predicate) {
+        for (x in object) {
+            let value = object[x];
+            if (predicate(x[value])) {
+                return x;
+            } 
+        };
+        return undefined;
+    },
+
+    drop(array, number) {
+        if (number == null) {
+            array.shift();
+        } else {
+            while (number>0) {
+                array.shift();
+                number --
+            }
+        }
+        return array;
+
+    },
+
+    dropWhile(array, predicate) {
+       let dropNumber = array.findIndex(x => {
+             return !predicate(x, array.indexOf(x), array);
+        });
+        let newArray = this.drop(array, dropNumber);
+        return newArray;
+
+    },
+
+    chunk(array, size) {
+        if(size == null) {
+            size = 1;
+        }
+        let newArray = [];
+        for (let i = 0; i<array.length; i+= size) {
+            newArray.push(array.slice(i, i+size));
+        }
+        return newArray;
     }
 
     
